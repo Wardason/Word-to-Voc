@@ -1,13 +1,22 @@
 from flask import Flask, render_template, request
+from dotenv import load_dotenv
+import os
 
-api_key = "apy_key"
+
+def configure():
+    load_dotenv()
+
+
+api_key = os.getenv('api_key')
 print(api_key)
 
 app = Flask(__name__)
 
+
 @app.route("/")
 def index():
-        return render_template('index.html')
+    return render_template('index.html')
+
 
 @app.route('/submit', methods=['POST'])
 def submit():
