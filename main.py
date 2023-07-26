@@ -1,6 +1,12 @@
 from flask import Flask, render_template, request
 from dotenv import load_dotenv
 import os
+from googletrans import Translator
+
+def word_translator(word):
+    translator = Translator()
+    translation = translator.translate(word, src='en', dest='de')
+    print(translation.text)
 
 
 def configure():
@@ -8,7 +14,8 @@ def configure():
 
 
 api_key = os.getenv('api_key')
-print(api_key)
+
+
 
 app = Flask(__name__)
 
@@ -22,6 +29,10 @@ def index():
 def submit():
     input_value = request.form['text'].lower().split()
     print(input_value)
+
+    for word in input_value:
+        word_translator(word)
+
     return render_template('index.html')
 
 
