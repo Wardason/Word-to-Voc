@@ -10,5 +10,12 @@
     <input type="submit">
 </form>
 
+<h1>Translated words</h1>
+    <ul>
+    {% for key, value in words.items() %}
+        <li>{{ key }} - {{ value }}</li>
+    {% endfor %}
+</ul>
+
 </body>
 </html>

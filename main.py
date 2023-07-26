@@ -6,7 +6,7 @@ from googletrans import Translator
 def word_translator(word):
     translator = Translator()
     translation = translator.translate(word, src='en', dest='de')
-    print(translation.text)
+    return translation
 
 
 def configure():
@@ -14,8 +14,6 @@ def configure():
 
 
 api_key = os.getenv('api_key')
-
-
 
 app = Flask(__name__)
 
@@ -27,13 +25,15 @@ def index():
 
 @app.route('/submit', methods=['POST'])
 def submit():
+    translated_words = []
     input_value = request.form['text'].lower().split()
-    print(input_value)
 
     for word in input_value:
-        word_translator(word)
+        translated_words.append(word_translator(word).text)
 
-    return render_template('index.html')
+    combined_lists = dict(zip(input_value, translated_words))
+
+    return render_template('index.html', words=combined_lists)
 
 
 if __name__ == '__main__':
