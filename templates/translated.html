@@ -4,14 +4,18 @@
     <title>Meine Seite</title>
 </head>
 <body>
-    <h1>Willkommen!</h1>
+    <h1>Willkommen</h1>
     <form action="{{ url_for('submit') }}" method="post">
     <textarea name="text"></textarea>
     <input type="submit">
 </form>
 
-
-
+<h1>Translated words</h1>
+    <ul>
+    {% for key, value in words.items() %}
+        <li>{{ key }} - {{ value }}</li>
+    {% endfor %}
+</ul>
 
 </body>
 </html>

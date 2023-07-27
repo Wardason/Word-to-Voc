@@ -8,7 +8,9 @@ def word_translator(word):
     translation = translator.translate(word, src='en', dest='de')
     return translation
 
-
+#https://thinkinfi.com/generate-sentences-from-keywords-using-python/
+#https://stackoverflow.com/questions/65062141/how-to-generate-a-meaningful-sentence-from-words-only
+#https://copyprogramming.com/howto/how-to-generate-a-meaningful-sentence-from-words-only
 def configure():
     load_dotenv()
 
@@ -33,7 +35,7 @@ def submit():
 
     combined_lists = dict(zip(input_value, translated_words))
 
-    return render_template('index.html', words=combined_lists)
+    return render_template('translated.html', words=combined_lists)
 
 
 if __name__ == '__main__':
