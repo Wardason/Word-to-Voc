@@ -38,14 +38,20 @@ def index():
 @app.route('/submit', methods=['POST'])
 def submit():
     translated_words = []
+    example_sentence = []
     input_value = request.form['text'].lower().split()
 
     for word in input_value:
         translated_words.append(word_translator(word).text)
+        try:
+            example_sentence.append(sentence_creator(word))
+        except:
+            print("error motherfucker")
 
     combined_lists = dict(zip(input_value, translated_words))
-
-    print(sentence_creator("garbage"))
+    for index, key in enumerate(input_value):
+        combined_lists[key] = combined_lists[key] + '   - ' + example_sentence[index]
+    print(combined_lists)
 
     return render_template('translated.html', words=combined_lists)
 
