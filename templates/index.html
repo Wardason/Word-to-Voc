@@ -13,109 +13,84 @@
   font-family:Courier, monospace;
 }
 
-#paper {
-  color:#FFF;
-  font-size:20px;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
 }
-#margin {
-  margin-left:12px;
-  margin-bottom:20px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
+
+.apple-heading {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin: 16px 0;
 }
-#text {
-  width:500px;
-  overflow:hidden;
-  background-color:#FFF;
-  color:#222;
-  font-family:Courier, monospace;
-  font-weight:normal;
-  font-size:24px;
-  resize:none;
-  line-height:40px;
-  padding-left:100px;
-  padding-right:100px;
-  padding-top:45px;
-  padding-bottom:34px;
-  background-image:url(https://static.tumblr.com/maopbtg/E9Bmgtoht/lines.png), url(https://static.tumblr.com/maopbtg/nBUmgtogx/paper.png);
-  background-repeat:repeat-y, repeat;
-  -webkit-border-radius:12px;
-  border-radius:12px;
-  -webkit-box-shadow: 0px 2px 14px #000;
-  box-shadow: 0px 2px 14px #000;
-  border-top:1px solid #FFF;
-  border-bottom:1px solid #FFF;
+
+.apple-textarea {
+  font-size: 16px;
+  font-weight: normal;
+  color: #333;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  padding: 12px;
+  width: 300px;
+  height: 150px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  resize: none; /* Deaktiviere das manuelle Ändern der Größe */
+  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
-#title {
-  background-color:transparent;
-  border-bottom:3px solid #FFF;
-  color:#FFF;
-  font-size:20px;
-  font-family:Courier, monospace;
-  height:28px;
-  font-weight:bold;
-  width:220px;
+
+.apple-textarea:focus {
+  outline: none; /* Entferne den Standard-Fokus-Rahmen */
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 0 0 3px #0070c9;
 }
-#button {
-  cursor:pointer;
-  margin-top:20px;
-  float:right;
-  height:40px;
-  padding-left:24px;
-  padding-right:24px;
-  font-family:Arial, Helvetica, sans-serif;
-  font-weight:bold;
-  font-size:20px;
-  color:#FFF;
-  text-shadow: 0px -1px 0px #000000;
-  -webkit-border-radius:8px;
-  border-radius:8px;
-  border-top:1px solid #FFF;
-  -webkit-box-shadow: 0px 2px 14px #000;
-  box-shadow: 0px 2px 14px #000;
-  background-color: #62add6;
-  background-image:url(https://static.tumblr.com/maopbtg/ZHLmgtok7/button.png);
-  background-repeat:repeat-x;
+
+.apple-button {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #0070c9;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, transform 0.1s;
 }
-#button:active {
-  zoom: 1;
-  filter: alpha(opacity=80);
-  opacity: 0.8;
+
+.apple-button:hover {
+  background-color: #005fb2;
+  transform: translateY(-2px);
 }
-#button:focus {
-  zoom: 1;
-  filter: alpha(opacity=80);
-  opacity: 0.8;
-}
-#wrapper {
-  width:700px;
-  height:auto;
-  margin-left:auto;
-  margin-right:auto;
-  margin-top:24px;
-  margin-bottom:100px;
+
+.apple-button:active {
+  background-color: #004d99;
+  transform: translateY(0);
 }
 </style>
 
 
 <body>
-    <h1>Willkommen!</h1>
 
+<h1 class="apple-heading">Word To Voc</h1>
 
 <div id="wrapper">
 
   <form id="paper" action="{{ url_for('submit') }}" method="post">
-    <textarea placeholder="Enter something funny." id="text" name="text" rows="4" style="overflow: hidden; word-wrap: break-word; resize: none; height: 160px; "></textarea>
+    <textarea name="text" class="apple-textarea" placeholder="Enter your text here..."></textarea>
     <br>
-    <input id="button" type="submit" value="Create">
+    <input class="apple-button" type="submit" value="Create">
 
   </form>
 
 </div>
-
 
 
 </body>
