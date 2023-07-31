@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
     <title>Meine Seite</title>
 </head>
-<body>
-    <h1>Willkommen</h1>
-    <form action="{{ url_for('submit') }}" method="post">
-    <textarea name="text"></textarea>
-    <input type="submit">
-</form>
 
-<h1>Translated words</h1>
+
+<body>
+
+<h1 class="apple-heading">Word To Voc</h1>
+
+<div id="wrapper">
+
+  <form id="paper" action="{{ url_for('submit') }}" method="post">
+    <textarea name="text" class="apple-textarea" placeholder="Enter your text here..."></textarea>
+    <br>
+    <button class="apple-button" type="button" value="Language"></button>
+    <input class="apple-button" type="submit" value="Create">
+
+  </form>
+
+</div>
+
+<h1 class="apple-heading">Translated words</h1>
     <ul>
     {% for key, value in words.items() %}
         <li>{{ key }} - {{ value }}</li>
