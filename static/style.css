@@ -1,0 +1,69 @@
+  * {
+  outline:none;
+  border:none;
+  margin:0px;
+  padding:0px;
+  font-family:Courier, monospace;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+.apple-heading {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin: 16px 0;
+}
+
+.apple-textarea {
+  font-size: 16px;
+  font-weight: normal;
+  color: #333;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  padding: 12px;
+  width: 300px;
+  height: 150px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  resize: none;
+  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.apple-textarea:focus {
+  outline: none;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 0 0 3px #0070c9;
+}
+
+.apple-button {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #0070c9;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, transform 0.1s;
+}
+
+.apple-button:hover {
+  background-color: #005fb2;
+  transform: translateY(-2px);
+}
+
+.apple-button:active {
+  background-color: #004d99;
+  transform: translateY(0);
+}

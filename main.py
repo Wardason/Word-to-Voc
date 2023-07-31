@@ -51,7 +51,6 @@ def submit():
     combined_lists = dict(zip(input_value, translated_words))
     for index, key in enumerate(input_value):
         combined_lists[key] = combined_lists[key] + '   - ' + example_sentence[index]
-    print(combined_lists)
 
     return render_template('translated.html', words=combined_lists)
 
