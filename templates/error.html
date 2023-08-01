@@ -2,9 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Error</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+    <title>Slow down</title>
 </head>
 <body>
+<h1 class="apple-heading">Slow down a little bit</h1>
+<p class="apple-font">We are only capable to handle 3 request per minute</p>
+<div class="timer-container">
+    <p>Please try again in <span class="timer" id="timer">60</span> sec</p>
+
+    <script>
+        const timerDisplay = document.getElementById('timer');
+
+        function updateTimer() {
+            let timeLeft = parseInt(timerDisplay.innerHTML);
+            if (timeLeft === 0) {
+                clearInterval(timerInterval);
+            } else {
+                timeLeft--;
+                timerDisplay.innerHTML = timeLeft;
+            }
+        }
+
+        const timerInterval = setInterval(updateTimer, 1000);
+    </script>
 
 </body>
 </html>

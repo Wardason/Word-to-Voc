@@ -45,9 +45,9 @@ def submit():
         translated_words.append(word_translator(word).text)
         try:
             example_sentence.append(sentence_creator(word))
-            print(example_sentence)
         except Exception as e:
-            return render_template('error.html', error=e)
+            print(e)
+            return render_template('error.html')
 
     combined_lists = dict(zip(input_value, translated_words))
     for index, key in enumerate(input_value):

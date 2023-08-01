@@ -22,6 +22,14 @@ body {
   margin: 16px 0;
 }
 
+.apple-font {
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1.6;
+  color: #333;
+  margin: 16px 0;
+}
+
 .apple-textarea {
   font-size: 16px;
   font-weight: normal;
@@ -68,3 +76,13 @@ body {
   transform: translateY(0);
 }
 
+
+.timer {
+    font-size: 48px;
+    font-weight: bold;
+    color: #007bff; /* Apple Blue */
+    background-color: #f7f7f7;
+    padding: 16px;
+    border: 2px solid #007bff; /* Apple Blue */
+    border-radius: 8px;
+}
