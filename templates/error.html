@@ -26,6 +26,14 @@
 
         const timerInterval = setInterval(updateTimer, 1000);
     </script>
+</div>
+<br>
+<form id="paper" action="{{ url_for('submit') }}" method="post">
+    <textarea name="text" class="apple-textarea" placeholder="Enter your text here..."></textarea>
+    <br>
+    <br>
+    <input class="apple-button" type="submit" value="Create">
 
+</form>
 </body>
 </html>
