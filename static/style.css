@@ -58,7 +58,7 @@ body {
   font-weight: bold;
   text-decoration: none;
   color: #ffffff;
-  background-color: #0070c9;
+  background-color: #F2D360;
   border-radius: 8px;
   border: none;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -67,22 +67,13 @@ body {
 }
 
 .apple-button:hover {
-  background-color: #005fb2;
+  background-color: #B8A627;
   transform: translateY(-2px);
 }
 
 .apple-button:active {
-  background-color: #004d99;
+  background-color: #D6B12F;
   transform: translateY(0);
 }
 
 
-.timer {
-    font-size: 48px;
-    font-weight: bold;
-    color: #007bff; /* Apple Blue */
-    background-color: #f7f7f7;
-    padding: 16px;
-    border: 2px solid #007bff; /* Apple Blue */
-    border-radius: 8px;
-}
