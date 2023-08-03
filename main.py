@@ -1,5 +1,5 @@
 import csv
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 from dotenv import load_dotenv
 import os
 from googletrans import Translator
@@ -27,9 +27,10 @@ def configure():
 
 
 api_key = os.getenv('api_key')
+app_secret = os.getenv('app_secret')
 
 app = Flask(__name__)
-
+app.secret_key = app_secret
 
 @app.route("/")
 def index():
@@ -54,19 +55,25 @@ def submit():
     for index, key in enumerate(input_value):
         combined_lists[key] = combined_lists[key] + '   - ' + example_sentence[index]
 
+    session['combined_lists'] = combined_lists
+
     return render_template('translated.html', words=combined_lists)
 
 @app.route('/save', methods=['POST'])
 def save_data():
-    print(" Save Button pushed!")
-    return 'Save printed!'
+    combined_lists = session.get('combined_lists', {})
+    with open('voc-data.csv', mode='a', newline='', encoding='utf-8') as file:
+        writer = csv.writer(file)
+        for word, translation in combined_lists.items():
+            writer.writerow([word, translation])
+    return render_template('translated.html', words=combined_lists)
 
 @app.route('/show', methods=['POST'])
 def show_data():
     list_of_rows = []
     with open('voc-data.csv', newline='', encoding='utf-8') as csv_file:
         csv_data = csv.reader(csv_file, delimiter='/')
-        list_of_rows = [row for row in csv_data]  # Convert the iterator to a list
+        list_of_rows = [row for row in csv_data]
         print(list_of_rows)
     return render_template('show-data.html', data=list_of_rows)
 
