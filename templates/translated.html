@@ -23,11 +23,18 @@
 </div>
 
 <h1 class="apple-heading">Translated words</h1>
-    <ul>
+<ul>
     {% for key, value in words.items() %}
         <li>{{ key }} - {{ value }}</li>
     {% endfor %}
 </ul>
+<br>
+
+<form method="post">
+    <button class="apple-button" type="submit" formaction="/show">Show</button>
+    <button class="apple-button" type="submit" formaction="/save">Save</button>
+</form>
+
 
 </body>
 </html>

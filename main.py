@@ -1,3 +1,4 @@
+import csv
 from flask import Flask, render_template, request
 from dotenv import load_dotenv
 import os
@@ -54,6 +55,20 @@ def submit():
         combined_lists[key] = combined_lists[key] + '   - ' + example_sentence[index]
 
     return render_template('translated.html', words=combined_lists)
+
+@app.route('/save', methods=['POST'])
+def save_data():
+    print(" Save Button pushed!")
+    return 'Save printed!'
+
+@app.route('/show', methods=['POST'])
+def show_data():
+    list_of_rows = []
+    with open('voc-data.csv', newline='', encoding='utf-8') as csv_file:
+        csv_data = csv.reader(csv_file, delimiter='/')
+        list_of_rows = [row for row in csv_data]  # Convert the iterator to a list
+        print(list_of_rows)
+    return render_template('show-data.html', data=list_of_rows)
 
 
 if __name__ == '__main__':
