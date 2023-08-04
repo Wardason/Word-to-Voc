@@ -5,10 +5,13 @@ import os
 from googletrans import Translator
 import openai
 
+
 def word_translator(word):
     translator = Translator()
     translation = translator.translate(word, src='en', dest='de')
     return translation
+
+
 def sentence_creator(keyword):
     openai.api_key = api_key
     completion = openai.ChatCompletion.create(
@@ -22,6 +25,7 @@ def sentence_creator(keyword):
     )
     return completion.choices[0].message.content
 
+
 def configure():
     load_dotenv()
 
@@ -31,6 +35,7 @@ app_secret = os.getenv('app_secret')
 
 app = Flask(__name__)
 app.secret_key = app_secret
+
 
 @app.route("/")
 def index():
@@ -59,14 +64,16 @@ def submit():
 
     return render_template('translated.html', words=combined_lists)
 
+
 @app.route('/save', methods=['POST'])
 def save_data():
     combined_lists = session.get('combined_lists', {})
     with open('voc-data.csv', mode='a', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
         for word, translation in combined_lists.items():
-            writer.writerow([word, translation])
+            writer.writerow([word + "   - " + translation])
     return render_template('translated.html', words=combined_lists)
+
 
 @app.route('/show', methods=['POST'])
 def show_data():
