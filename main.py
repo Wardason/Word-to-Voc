@@ -5,13 +5,15 @@ import os
 from googletrans import Translator
 import openai
 
-
+# This function takes an English word as input and translates it to German and retruns it
 def word_translator(word):
     translator = Translator()
     translation = translator.translate(word, src='en', dest='de')
     return translation
 
 
+# This function uses the ChatGPT API to generate a random sentence, incorporating the provided English Keyword.
+# The generated sentence is returned as the output.
 def sentence_creator(keyword):
     openai.api_key = api_key
     completion = openai.ChatCompletion.create(
@@ -25,7 +27,7 @@ def sentence_creator(keyword):
     )
     return completion.choices[0].message.content
 
-
+# This function loads the env file, in which the api key and the session key is stored
 def configure():
     load_dotenv()
 
@@ -36,12 +38,17 @@ app_secret = os.getenv('app_secret')
 app = Flask(__name__)
 app.secret_key = app_secret
 
-
+# Main website
 @app.route("/")
 def index():
     return render_template('index.html')
 
-
+# Submit website
+# The function performs the following steps:
+#   - It retrieves the form input data as a list of words
+#   - For each word in the input list, it translates the word and creates an example sentence
+#   - If there's an exception during sentence creation, it renders the error website
+#   - The translated words and example sentences are combined into a dictionary and stored in the session variable.
 @app.route('/submit', methods=['POST'])
 def submit():
     translated_words = []
@@ -64,7 +71,9 @@ def submit():
 
     return render_template('translated.html', words=combined_lists)
 
-
+# This function is triggered when the user pushes the save button to store the data in a CSV file (database). It
+# retrieves the combined list data from the session, which contains word-translation pairs, and appends the data to a
+# CSV file named "voc-data.csv"
 @app.route('/save', methods=['POST'])
 def save_data():
     combined_lists = session.get('combined_lists', {})
@@ -74,7 +83,8 @@ def save_data():
             writer.writerow([word + "   - " + translation])
     return render_template('translated.html', words=combined_lists)
 
-
+# This function shows the saved vocs history
+# It reads the data from the CSV file and stores the rows in a list
 @app.route('/show', methods=['POST'])
 def show_data():
     list_of_rows = []
