@@ -44,31 +44,22 @@ def show_data():
         print(list_of_rows)
     return list_of_rows
 
-def sorting_word_translations():
-    translated_words = []
+def sorting_translation(sort):
+    translated_input = []
     input_value = request.form['text'].lower().split()
+    creation = None
 
     for word in input_value:
         try:
-            creating_word_translation = word_translator(word).text
-            translated_words.append(creating_word_translation)
+            if sort == "word":
+                creation = word_translator(word).text
+            elif sort == "sentence":
+                creation = sentence_creator(word)
+            translated_input.append(creation)
         except Exception as e:
             print(f"Error Message in sorting word {e}")
             return render_template('error.html')
-    return translated_words
-
-def sorting_sentence_translations():
-    example_sentence = []
-    input_value = request.form['text'].lower().split()
-
-    for word in input_value:
-        try:
-            creating_sentence_translation = sentence_creator(word)
-            example_sentence.append(creating_sentence_translation)
-        except Exception as e:
-            print(f"Error Message in sorting word {e}")
-            return render_template('error.html')
-    return example_sentence
+    return translated_input
 
 def merge_translations_and_context(input_value, translated_words, example_sentence):
     combined_lists = dict(zip(input_value, translated_words))
@@ -76,6 +67,9 @@ def merge_translations_and_context(input_value, translated_words, example_senten
         combined_lists[key] = combined_lists[key] + '   - ' + example_sentence[index]
     return combined_lists
 # endregion
+
+
+
 
 
 api_key = os.getenv('api_key')
@@ -91,8 +85,8 @@ def index():
 @app.route('/submit', methods=['POST'])
 def submit():
     input_value = request.form['text'].lower().split()
-    translated_words = sorting_word_translations()
-    example_sentence = sorting_sentence_translations()
+    translated_words = sorting_translation("word")
+    example_sentence = sorting_translation("sentence")
 
     combined_lists = merge_translations_and_context(input_value, translated_words, example_sentence)
     session['combined_lists'] = combined_lists
