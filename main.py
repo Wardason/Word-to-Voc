@@ -49,8 +49,12 @@ def sorting_word_translations():
     input_value = request.form['text'].lower().split()
 
     for word in input_value:
-        creating_word_translation = word_translator(word).text
-        translated_words.append(creating_word_translation)
+        try:
+            creating_word_translation = word_translator(word).text
+            translated_words.append(creating_word_translation)
+        except Exception as e:
+            print(f"Error Message in sorting word {e}")
+            return render_template('error.html')
     return translated_words
 
 def sorting_sentence_translations():
@@ -58,8 +62,12 @@ def sorting_sentence_translations():
     input_value = request.form['text'].lower().split()
 
     for word in input_value:
-        creating_sentence_translation = sentence_creator(word)
-        example_sentence.append(creating_sentence_translation)
+        try:
+            creating_sentence_translation = sentence_creator(word)
+            example_sentence.append(creating_sentence_translation)
+        except Exception as e:
+            print(f"Error Message in sorting word {e}")
+            return render_template('error.html')
     return example_sentence
 
 def merge_translations_and_context(input_value, translated_words, example_sentence):
