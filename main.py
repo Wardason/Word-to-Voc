@@ -38,11 +38,15 @@ def save_data():
 
 def show_data():
     list_of_rows = []
-    with open('voc-data.csv', newline='', encoding='utf-8') as csv_file:
-        csv_data = csv.reader(csv_file, delimiter='/')
+    with open('voc-data.csv', newline='', encoding='utf-8') as file:
+        csv_data = csv.reader(file, delimiter='/')
         list_of_rows = [row for row in csv_data]
         print(list_of_rows)
     return list_of_rows
+
+def delete_data():
+    with open('voc-data.csv', 'w') as file:
+        pass
 
 def sorting_translation(sort):
     translated_input = []
@@ -102,6 +106,12 @@ def save_data_website():
 def show_data_website():
     list_of_rows = show_data()
     return render_template('show-data.html', data=list_of_rows)
+
+@app.route('/clear', methods=['POST'])
+def clear_data_website():
+    delete_data()
+    return render_template('index.html')
+
 
 
 if __name__ == '__main__':

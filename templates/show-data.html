@@ -28,8 +28,12 @@
         {% for item in data %}
             <li>{{ item[0] }}</li>
         {% endfor %}
-    </ul>
-
+ </ul>
+<br>
+<form method="post">
+    <button class="apple-button" type="submit" formaction="/clear">Clear</button>
+    <button class="apple-button" type="submit" formaction="/clear">Configure</button>
+</form>
 
 </body>
 </html>
