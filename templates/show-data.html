@@ -11,18 +11,16 @@
 
 <h1 class="apple-heading">Word To <span id="apple-yellow">Voc</span></h1>
 
-<div id="wrapper">
-
-  <form id="paper" action="{{ url_for('submit') }}" method="post">
+<form action="{{ url_for('submit') }}" method="post">
     <textarea name="text" class="apple-textarea" placeholder="Enter your text here..."></textarea>
     <br> <br>
     <button class="apple-button">Language</button>
     <input class="apple-button" type="submit" value="Create">
 
-  </form>
+</form>
 
-</div>
-<br>
+<br> <br>
+
 <h1 class="apple-heading">Saved Words</h1>
  <ul>
         {% for item in data %}
@@ -30,6 +28,7 @@
         {% endfor %}
  </ul>
 <br>
+
 <form method="post">
     <button class="apple-button" type="submit" formaction="/clear">Clear</button>
     <button class="apple-button" type="submit" formaction="/clear">Configure</button>
